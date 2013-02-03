@@ -1,0 +1,15 @@
+*.swp
+*.pyc
+*.swo
+*.swn
+*.*~
+*.sqlite3
+.project
+.pydevproject
+.settings
+.vagrant
+.DS_Store
+.coverage
+htmlcov/*
+*.~lock*
+www/conf/local.py
