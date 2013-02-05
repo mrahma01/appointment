@@ -106,6 +106,8 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
+AUTH_PROFILE_MODULE = 'user.UserProfile'
+
 TEMPLATE_DIRS = (
     location('templates'),
 )
@@ -119,9 +121,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.flatpages',
     'django.contrib.staticfiles',
-    'south', # Do not change the position of south in this list unless specificall instructed to by installation instructions
+    #'south', # Do not change the position of south in this list unless specificall instructed to by installation instructions
     'django_extensions',
     'debug_toolbar',
+
+    #appointment apps
+    'appointment',
+    'appointment.user',
 )
 
 # This is set as in a HTML comment at the bottom of the page
