@@ -17,7 +17,6 @@ if settings.DEBUG:
     )
 
 # Application specific url
-
-urlpatterns = patterns('',
-    (r'^/', include(appointment.urls)),
+urlpatterns += patterns('',
+    (r'^appointment/', include(appointment.urls)),
 )
