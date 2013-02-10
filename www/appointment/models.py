@@ -26,7 +26,7 @@ class TimeSlot(models.Model):
 
 
 class Appointment(models.Model):
-    user = models.ForeignKey(User)
+    email = models.EmailField(max_length=100)
     time_slot = models.ForeignKey(TimeSlot)
     date_created = models.DateField()
 
