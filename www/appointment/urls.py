@@ -1,6 +1,8 @@
 from django.conf.urls.defaults import url, patterns, include
-from appointment.views import AppointmentCreateView
+from appointment.views import AppointmentCreateView, AppointmentConfirmView
+
 
 urlpatterns = patterns('',
     url(r'^add/$', AppointmentCreateView.as_view(), name='add-appointment'),
+    url(r'^confirm/(\d{11})/$', AppointmentConfirmView.as_view(), name='confirm-appointment'),
 )

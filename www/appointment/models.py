@@ -46,6 +46,9 @@ class Appointment(models.Model):
     date_created = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
 
-
     def get_absolute_url(self):
         return reverse('add-appointment')    
+
+    def get_confirmation_url(self, key):
+        return reverse('confirm-appointment',
+                kwargs={'appointment_key': key})
