@@ -12,6 +12,7 @@ ADMINS = (
     ('Alerts', 'alerts.{{ project_code }}@{{ domain }}'),
 )
 
+FROM_EMAIL = 'admin@appointment.com'
 MANAGERS = ADMINS
 
 # Local time zone for this installation. Choices can be found here:

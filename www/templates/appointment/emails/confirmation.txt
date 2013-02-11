@@ -1,0 +1,10 @@
+Hello {{user}},
+
+Please click this link {{link}} to confirm your appointment.
+
+Your ticket will be sent in 10 minutes.
+
+This request will be invalid after 24 hours.
+
+Regards,
+Appointment Team
