@@ -1,11 +1,13 @@
 from django.views.generic.edit import CreateView
-from django.core.mail import send_mail
 
 from appointment.models import Appointment
+from appointment.forms import AppointmentForm
 from appointment import email_service
 
 class AppointmentCreateView(CreateView):
+    form_class = AppointmentForm
     model = Appointment
+    
     
     def form_valid(self, form):
         obj = form.save(commit=False)

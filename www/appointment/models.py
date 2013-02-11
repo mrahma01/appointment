@@ -26,9 +26,26 @@ class TimeSlot(models.Model):
 
 
 class Appointment(models.Model):
+    SUBMITTED = 'submitted'
+    CONFIRMED = 'confirmed'
+    MODIFIED = 'modified'
+    DELETED = 'deleted'
+    STATUS_CHOICE = (
+        (SUBMITTED ,'Submitted'),
+        (CONFIRMED,'Confirmed'),
+        (MODIFIED ,'Modified'),
+        (DELETED ,'Deleted'),
+    )
+
     email = models.EmailField(max_length=100)
     time_slot = models.ForeignKey(TimeSlot)
-    date_created = models.DateField()
+    date_selected = models.DateField()
+    appointment_key = models.CharField(max_length=11)
+    appointment_status = models.CharField(max_length=11, choices=STATUS_CHOICE, 
+                                            default=CONFIRMED)
+    date_created = models.DateField(auto_now_add=True)
+    date_modified = models.DateField(auto_now=True)
+
 
     def get_absolute_url(self):
         return reverse('add-appointment')    
