@@ -49,6 +49,5 @@ class Appointment(models.Model):
     def get_absolute_url(self):
         return reverse('add-appointment')    
 
-    def get_confirmation_url(self, key):
-        return reverse('confirm-appointment',
-                kwargs={'appointment_key': key})
+    def get_confirmation_url(self):
+        return reverse('confirm-appointment', kwargs={'key': self.appointment_key})

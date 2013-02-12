@@ -13,7 +13,7 @@ class AppointmentCreateView(CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.appointment_key = utils.get_random(11)
-        self.emailservice.send_confirmation(obj)
+        self.emailservice.send_confirmation(self.request, obj)
         return super(AppointmentCreateView, self).form_valid(form)
 
 class AppointmentConfirmView(CreateView):
