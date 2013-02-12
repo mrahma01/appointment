@@ -42,9 +42,12 @@ class Appointment(models.Model):
     date_selected = models.DateField()
     appointment_key = models.CharField(max_length=11)
     appointment_status = models.CharField(max_length=11, choices=STATUS_CHOICE, 
-                                            default=CONFIRMED)
+                                            default=SUBMITTED)
     date_created = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
+
+    def __unicode__(self):
+        return "%s at %s on %s" %(self.email, self.time_slot, self.date_selected)
 
     def get_absolute_url(self):
         return reverse('add-appointment')    

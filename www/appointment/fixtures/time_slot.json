@@ -1,0 +1,290 @@
+[
+    {
+        "pk": 1, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "08:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "08:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "08:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "08:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "09:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "09:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "09:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "09:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "10:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "10:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "10:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "10:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "11:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "11:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "11:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "11:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "12:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "12:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "12:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "12:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "13:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "13:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "13:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "13:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "14:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "14:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "14:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "14:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "15:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "15:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "15:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "15:45:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "16:00:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "16:15:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "16:30:00", 
+            "slot_serial": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "appointment.timeslot", 
+        "fields": {
+            "time_start": "16:45:00", 
+            "slot_serial": ""
+        }
+    }
+]
