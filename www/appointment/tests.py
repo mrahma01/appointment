@@ -21,5 +21,5 @@ class ViewTest(unittest.TestCase):
 
     def test_appointmentconfirmview(self):
         """If key exist update the status"""
-        response = self.c.post('/appointment/add/', {u'time_slot': [u'8'], u'email': [u'muhammad.m.rahman@live.com'], u'date_selected': [u'2012-12-12']})
+        response = self.c.post('/appointment/add/', {u'time_slot': [u'11:30'], u'email': [u'muhammad.m.rahman@live.com'], u'date_selected': [u'2012-12-12']})
         print response
