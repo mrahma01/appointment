@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 from appointment import utils
+from appointment.service import EmailService
 
 
 class UserProfile(models.Model):
@@ -47,7 +48,7 @@ class Appointment(models.Model):
     email = models.EmailField(max_length=100)
     time_slot = models.CharField(max_length=11, choices=TIMESLOT)
     date_selected = models.DateField()
-    appointment_key = models.CharField(max_length=11)
+    appointment_key = models.CharField(max_length=11, default=utils.get_random(11), editable=False)
     appointment_status = models.CharField(max_length=11, choices=STATUS_CHOICE,
                                             default=SUBMITTED)
     date_created = models.DateField(auto_now_add=True)
@@ -61,3 +62,10 @@ class Appointment(models.Model):
 
     def get_confirmation_url(self):
         return reverse('confirm-appointment', kwargs={'key': self.appointment_key})
+
+
+def send_confirmation_email(sender, instance, created, **kwargs):
+    if created:
+        EmailService().send_confirmation(instance)
+
+post_save.connect(send_confirmation_email, sender=Appointment)

@@ -8,5 +8,5 @@ class AppointmentForm(forms.ModelForm):
         fields = ('email', 'time_slot', 'date_selected')
 
     def __init__(self, *args, **kwargs):
-        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        super(AppointmentForm, self).__init__(*args, **kwargs)
         self.fields['time_slot'].empty_label = None

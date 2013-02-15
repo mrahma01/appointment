@@ -11,7 +11,7 @@ DEBUG = False
 ADMINS = (
     ('Alerts', 'alerts.{{ project_code }}@{{ domain }}'),
 )
-
+ABSOLUTE_URI = 'http://localhost:8000'
 FROM_EMAIL = 'admin@appointment.com'
 MANAGERS = ADMINS
 
