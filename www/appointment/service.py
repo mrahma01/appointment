@@ -7,7 +7,6 @@ from django.conf import settings
 class EmailService(object):
 
     def send_confirmation(self, obj):
-        print obj.__dict__
         text_only = get_template('appointment/emails/confirmation.txt')
         html_only = get_template('appointment/emails/confirmation.html')
         name = obj.email.split('@')[0]  # get first part of the email as name

@@ -18,4 +18,3 @@ class AppointmentConfirmView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AppointmentConfirmView, self).get_context_data(**kwargs)
         key = context['params']['key']
-        print key
