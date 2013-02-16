@@ -44,7 +44,7 @@ class Appointment(models.Model):
 
     ts = utils.get_time_slot()
     TIMESLOT = tuple(zip(ts, ts))
-    RANDOM_KEY = utils.get_random(11)
+    RANDOM_KEY = 'VdTrwIMknrd'  # utils.get_random(11)
 
     email = models.EmailField(max_length=100)
     time_slot = models.CharField(max_length=11, choices=TIMESLOT)
@@ -69,8 +69,8 @@ class Appointment(models.Model):
         return reverse('confirm-appointment', kwargs={'key': self.appointment_key})
 
 
-@receiver(pre_save)
-def get_unique_key(sender, instance, **kwargs):
+# @receiver(pre_save)
+def find_duplicate_key(sender, instance, **kwargs):
     key = instance.appointment_key
     obj = Appointment.objects.filter(appointment_key=key)
     if obj:
@@ -81,9 +81,13 @@ def get_unique_key(sender, instance, **kwargs):
                 instance.appointment_key = key
                 break
 
+pre_save.connect(find_duplicate_key, sender=Appointment)
 
-@receiver(post_save)
+
+# @receiver(post_save)
 def send_confirmation_email(sender, instance, created, **kwargs):
     if created:
         from appointment.service import EmailService
         EmailService().send_confirmation(instance)
+
+post_save.connect(send_confirmation_email, sender=Appointment)
