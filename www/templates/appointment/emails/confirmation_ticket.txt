@@ -1,0 +1,12 @@
+Hello {{obj.username}}
+
+This is your ticket for the appointment on the {{obj.date_selected}} at {{obj.time_slot}}
+
+##########################
+#                        #
+#       TICKET           #
+#                        #
+##########################
+
+Regards,
+Appointment Team
