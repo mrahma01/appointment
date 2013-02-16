@@ -4,7 +4,6 @@ from appointment.models import Appointment
 
 
 class AppointmentCreateViewTest(unittest.TestCase):
-    fixtures = ['time_slot.json']
 
     def setUp(self):
         self.c = Client()
@@ -20,9 +19,13 @@ class AppointmentCreateViewTest(unittest.TestCase):
         response = self.c.get('/appointment/confirm/asdf1234/')
         self.assertEqual(response.status_code, 404, 'key should not be 11 char long')
 
-    def test_add_appointment_generate_key(self):
+    def test_add_appointment_has_key(self):
         """If key exist update the status"""
         resp = self.c.post('/appointment/add/', {u'time_slot': [u'11:30'], u'email': [u'muhammad.m.rahman@live.com'], u'date_selected': [u'2012-12-12']})
         obj = Appointment.objects.all()[0]
         key = obj.__dict__['appointment_key']
-        self.assertTrue(key in resp.context['key'])
+        self.assertEqual(key, resp.context['key'])
+
+    def test_does_not_save_with_duplicate_key(self):
+        """If key already exist it will generate a new one"""
+        pass

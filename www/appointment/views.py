@@ -3,13 +3,12 @@ from django.views.generic.base import TemplateView
 
 from appointment.models import Appointment
 from appointment.forms import AppointmentForm
-from appointment.service import EmailService
+from appointment.service import AppointmentService
 
 
 class AppointmentCreateView(CreateView):
     form_class = AppointmentForm
     model = Appointment
-    emailservice = EmailService()
 
 
 class AppointmentConfirmView(TemplateView):
@@ -18,3 +17,6 @@ class AppointmentConfirmView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AppointmentConfirmView, self).get_context_data(**kwargs)
         key = context['params']['key']
+        obj = AppointmentService().update_appointment(key)
+        context['obj'] = obj
+        return context
