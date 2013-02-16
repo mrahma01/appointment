@@ -69,7 +69,7 @@ class Appointment(models.Model):
         return reverse('confirm-appointment', kwargs={'key': self.appointment_key})
 
 
-# @receiver(pre_save)
+@receiver(pre_save, sender=Appointment)
 def find_duplicate_key(sender, instance, **kwargs):
     key = instance.appointment_key
     obj = Appointment.objects.filter(appointment_key=key)
@@ -81,13 +81,15 @@ def find_duplicate_key(sender, instance, **kwargs):
                 instance.appointment_key = key
                 break
 
-pre_save.connect(find_duplicate_key, sender=Appointment)
+# pre_save.connect(find_duplicate_key, sender=Appointment)
 
 
-# @receiver(post_save)
+@receiver(post_save, sender=Appointment)
 def send_confirmation_email(sender, instance, created, **kwargs):
+    from appointment.service import EmailService
     if created:
-        from appointment.service import EmailService
         EmailService().send_confirmation(instance)
+    else:
+        EmailService().send_ticket(instance)
 
-post_save.connect(send_confirmation_email, sender=Appointment)
+# post_save.connect(send_confirmation_email, sender=Appointment)

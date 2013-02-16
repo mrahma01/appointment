@@ -17,6 +17,12 @@ class AppointmentConfirmView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AppointmentConfirmView, self).get_context_data(**kwargs)
         key = context['params']['key']
-        obj = AppointmentService().update_appointment(key)
-        context['obj'] = obj
+        try:
+            obj = Appointment.objects.filter(appointment_key=key)
+            if obj:
+                obj = AppointmentService().update_appointment(obj[0])
+                context['obj'] = obj
+        except Exception, e:
+            print e
+
         return context

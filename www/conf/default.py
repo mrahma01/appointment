@@ -11,9 +11,19 @@ DEBUG = False
 ADMINS = (
     ('Alerts', 'alerts.{{ project_code }}@{{ domain }}'),
 )
-ABSOLUTE_URI = 'http://localhost:8000'
-FROM_EMAIL = 'admin@appointment.com'
+
 MANAGERS = ADMINS
+
+#################### appointment settings #################################
+ABSOLUTE_URI = 'http://localhost:8000'  # IMPORTANT FOR EMAIL CONTENT
+FROM_EMAIL = 'admin@appointment.com'  # SET ACCORDING TO YOU SMTP SETTINGS
+APPOINTMENT_START = 8  # BETWEEN 0 - 24
+APPOINTMENT_END = 17  # BETWEEN 0 - 24
+APPOINTMENT_INTERVAL = 15  # IN MINUTES
+MAX_APPOINTMENT_PER_SLOT = 1  # HOW MANY YOU CAN SERVE IN EACH SLOT
+
+###########################################################################
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

@@ -2,6 +2,8 @@ import random
 import string
 from datetime import datetime, timedelta
 
+from django.conf import settings
+
 
 def get_random(limit):
     fn = lambda: \
@@ -11,11 +13,12 @@ def get_random(limit):
 
 
 def get_time_slot():
-    now = datetime(2013, 1, 1, 7, 45)
-    end = now + timedelta(hours=9)
+    FULL_DAY = settings.APPOINTMENT_END - settings.APPOINTMENT_START
+    now = datetime(2013, 1, 1, settings.APPOINTMENT_START)
+    end = now + timedelta(hours=FULL_DAY)
     slot = now
-    time_slot = []
+    time_slot = [now.strftime("%H:%M")]
     while slot < end:
-        slot = slot + timedelta(minutes=15)
+        slot = slot + timedelta(minutes=settings.APPOINTMENT_INTERVAL)
         time_slot.append(slot.strftime("%H:%M"))
     return time_slot

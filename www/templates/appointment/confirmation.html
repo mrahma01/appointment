@@ -1,7 +1,20 @@
-Hello {{obj.username}}
-<br/>
-The following appointment has been confirmed for you:
-<br/>
-Date = {{obj.date_selected}}
-<br/>
-Time = {{obj.time_slot}}
+{% if obj %}
+    Hello {{obj.username}}
+    <br/>
+    The following appointment has been confirmed for you:
+    <br/>
+    Date = {{obj.date_selected}}
+    <br/>
+    Time = {{obj.time_slot}}
+    <br/>
+    Your pass will be sent to your email within 10 mins. 
+    <br/> Don't forget to check the junk/spam box.
+{% else %}
+    OOPS!!!
+    <br/>
+    Either of the following has happened
+    <ul>
+        <li>You have already confirmed this appointment</li>
+        <li>Your appointment has expired</li>
+    </ul>
+{% endif %}
