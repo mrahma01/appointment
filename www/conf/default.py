@@ -15,7 +15,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #################### appointment settings #################################
-ABSOLUTE_URI = 'http://localhost:8000'  # IMPORTANT FOR EMAIL CONTENT
+ABSOLUTE_URI = 'http://127.0.0.1:8000'  # IMPORTANT FOR EMAIL CONTENT
 FROM_EMAIL = 'admin@appointment.com'  # SET ACCORDING TO YOU SMTP SETTINGS
 APPOINTMENT_START = 8  # BETWEEN 0 - 24
 APPOINTMENT_END = 17  # BETWEEN 0 - 24
