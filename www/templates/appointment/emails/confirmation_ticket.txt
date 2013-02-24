@@ -1,12 +1,12 @@
 Hello {{obj.username}}
 
-This is your ticket for the appointment on the {{obj.date_selected}} at {{obj.time_slot}}
+This is your ticket number for the appointment on the {{obj.date_selected}} at {{obj.time_slot}}
 
-##########################
-#                        #
-#       TICKET           #
-#                        #
-##########################
+###########################
+                        
+{{obj.appointment_key}} 
+                        
+###########################
 
 Regards,
 Appointment Team
