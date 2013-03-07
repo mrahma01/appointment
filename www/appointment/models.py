@@ -50,8 +50,7 @@ class Appointment(models.Model):
     time_slot = models.CharField(max_length=11, choices=TIMESLOT)
     date_selected = models.DateField()
     appointment_key = models.CharField(max_length=11, default=RANDOM_KEY, editable=False)
-    appointment_status = models.CharField(max_length=11, choices=STATUS_CHOICE,
-                                            default=SUBMITTED)
+    appointment_status = models.CharField(max_length=11, choices=STATUS_CHOICE, default=SUBMITTED)
     date_created = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
 

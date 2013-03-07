@@ -2,6 +2,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 from django.conf import settings
+from appointment.models import Appointment
 
 
 class EmailService(object):
@@ -15,7 +16,7 @@ class EmailService(object):
         c = Context({'user': obj.username, 'key': obj.appointment_key,
                     'base_uri': base_uri})
         subject, from_email, to = 'Appointment Confirmation', \
-                                    settings.FROM_EMAIL, obj.email
+            settings.FROM_EMAIL, obj.email
         text_content = text_only.render(c)
         html_content = html_only.render(c)
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
@@ -28,7 +29,7 @@ class EmailService(object):
 
         c = Context({'obj': obj})
         subject, from_email, to = 'Appointment Pass', settings.FROM_EMAIL, \
-                                    obj.email
+            obj.email
         text_content = text_only.render(c)
         html_content = html_only.render(c)
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to, ])
@@ -42,3 +43,16 @@ class AppointmentService(object):
         obj.appointment_status = 'confirmed'
         obj.save()
         return obj
+
+    def get_slot_booking_count(self, date, slot):
+        """
+        return the number of booking made on a day on a slot
+        """
+        return Appointment.objects.filter(date_selected=date, time_slot=slot).count()
+
+    def is_booking_allowed(self, date, slot):
+        """
+        return if appointment slot is available to book.
+        It compares with the settings for the maximum number for a slot allowed.
+        """
+        return self.get_slot_booking_count(date, slot) < settings.MAX_APPOINTMENT_PER_SLOT

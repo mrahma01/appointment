@@ -1,3 +1,5 @@
+import datetime
+
 from django.utils import unittest
 from django.test import TestCase
 from django.test.client import Client
@@ -7,6 +9,7 @@ from django_dynamic_fixture import G
 
 from appointment.models import Appointment
 from appointment.service import AppointmentService, EmailService
+from appointment.forms import AppointmentForm
 
 
 class BaseTest(unittest.TestCase):
@@ -32,6 +35,20 @@ class AddAppointmentTest(BaseTest):
         ap2 = G(Appointment, appointment_key='bCfm393Rmox')
         self.assertNotEqual(ap1.appointment_key, ap2.appointment_key)
 
+    def test_max_appointment_booked(self):
+        """ if MAX_APPOINTMENT_PER_SLOT has reached it will
+            raise a validation error"""
+        G(Appointment, time_slot='08:00', date_selected='2012-12-12')
+        G(Appointment, time_slot='08:00', date_selected='2012-12-12')
+        G(Appointment, time_slot='08:00', date_selected='2012-12-12')
+        postdata = {
+            'time_slot': u'08:00',
+            'email': u'muhammad.m.rahman@live.com',
+            'date_selected': datetime.date(2012, 12, 12)
+        }
+        form = AppointmentForm(postdata)
+        self.assertFalse(form.is_valid())
+
 
 class ConfirmAppointmentTest(BaseTest):
 
@@ -53,6 +70,13 @@ class AppointmentServiceTest(BaseTest):
 
         AppointmentService().update_appointment(app)
         self.assertEqual('confirmed', app.appointment_status)
+
+    def test_get_slot_booking_count(self):
+        """ Return total number of slot booked on a time slot"""
+        ap = G(Appointment)
+        ap = G(Appointment)
+        ap = G(Appointment)
+        self.assertEqual(AppointmentService().get_slot_booking_count('2012-12-12', '08:00'), 3)
 
 
 class EmailServiceTest(TestCase):

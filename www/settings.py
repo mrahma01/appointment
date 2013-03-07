@@ -28,10 +28,10 @@ FROM_EMAIL = 'mmrs151@gmail.com'  # SET ACCORDING TO YOU SMTP SETTINGS
 APPOINTMENT_START = 8  # BETWEEN 0 - 24
 APPOINTMENT_END = 17  # BETWEEN 0 - 24
 APPOINTMENT_INTERVAL = 15  # IN MINUTES
-MAX_APPOINTMENT_PER_SLOT = 1  # HOW MANY YOU CAN SERVE IN EACH SLOT
+MAX_APPOINTMENT_PER_SLOT = 3  # HOW MANY YOU CAN SERVE IN EACH SLOT
 
 ###########################################################################
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'appointment',
+    'django_extensions'
 )
 
 # A sample logging configuration. The only tangible logging
