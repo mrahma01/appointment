@@ -20,6 +20,10 @@ class BaseTest(unittest.TestCase):
 
 class AddAppointmentTest(BaseTest):
 
+    def test_appointment_list(self):
+        response = self.c.get(reverse('appointment-list'))
+        self.assertEquals(response.status_code, 200)
+
     def test_add_url(self):
         response = self.c.get(reverse('add-appointment'))
         self.assertEqual(response.status_code, 200)
@@ -73,9 +77,9 @@ class AppointmentServiceTest(BaseTest):
 
     def test_get_slot_booking_count(self):
         """ Return total number of slot booked on a time slot"""
-        ap = G(Appointment)
-        ap = G(Appointment)
-        ap = G(Appointment)
+        G(Appointment)
+        G(Appointment)
+        G(Appointment)
         self.assertEqual(AppointmentService().get_slot_booking_count('2012-12-12', '08:00'), 3)
 
 

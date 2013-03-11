@@ -1,9 +1,11 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
+from django.views.generic import ListView
 
 from appointment.models import Appointment
 from appointment.forms import AppointmentForm
 from appointment.service import AppointmentService
+from appointment.utils import validate_email
 
 
 class AppointmentCreateView(CreateView):
@@ -26,3 +28,13 @@ class AppointmentConfirmView(TemplateView):
             print e
 
         return context
+
+
+class AppointmentListView(ListView):
+    model = Appointment
+    template_name = 'appointment/appointment_list.html'
+
+    def get_queryset(self):
+        email = self.request.GET.get('email', 'email')
+        if validate_email(email):
+            return Appointment.objects.filter(email=email)

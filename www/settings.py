@@ -31,7 +31,7 @@ APPOINTMENT_INTERVAL = 15  # IN MINUTES
 MAX_APPOINTMENT_PER_SLOT = 3  # HOW MANY YOU CAN SERVE IN EACH SLOT
 
 ###########################################################################
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
