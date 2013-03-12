@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from appointment.models import Appointment
 from appointment.forms import AppointmentForm
 from appointment.service import AppointmentService
-from appointment.utils import validate_email
+from appointment.utils import is_email
 
 
 class AppointmentCreateView(CreateView):
@@ -36,5 +36,5 @@ class AppointmentListView(ListView):
 
     def get_queryset(self):
         email = self.request.GET.get('email', 'email')
-        if validate_email(email):
+        if is_email(email):
             return Appointment.objects.filter(email=email)

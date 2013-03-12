@@ -25,10 +25,9 @@ def get_time_slot():
     return time_slot
 
 
-def validate_email(email):
+def is_email(email):
     pattern = '[\.\w]{1,}[@]\w+[.]\w+'
     if re.match(pattern, email):
-        print email
         return True
     else:
         return False
