@@ -36,5 +36,7 @@ class AppointmentListView(ListView):
 
     def get_queryset(self):
         email = self.request.GET.get('email', 'email')
+        key = self.request.GET.get('key', 'key')
         if is_email(email):
-            return Appointment.objects.filter(email=email)
+            if AppointmentService().has_confirmed_booking(email, key):
+                return AppointmentService().get_booking_by_email(email)

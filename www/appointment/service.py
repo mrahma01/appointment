@@ -56,3 +56,9 @@ class AppointmentService(object):
         It compares with the settings for the maximum number for a slot allowed.
         """
         return self.get_slot_booking_count(date, slot) < settings.MAX_APPOINTMENT_PER_SLOT
+
+    def has_confirmed_booking(self, email, key):
+        return Appointment.objects.filter(email=email, appointment_key=key, appointment_status='confirmed')
+
+    def get_booking_by_email(self, email):
+        return Appointment.objects.filter(email=email)

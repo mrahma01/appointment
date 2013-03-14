@@ -18,11 +18,14 @@ class BaseTest(unittest.TestCase):
         self.c = Client()
 
 
-class AddAppointmentTest(BaseTest):
+class ViewAppointmentTest(BaseTest):
 
     def test_appointment_list(self):
         response = self.c.get(reverse('appointment-list'))
         self.assertEquals(response.status_code, 200)
+
+
+class AddAppointmentTest(BaseTest):
 
     def test_add_url(self):
         response = self.c.get(reverse('add-appointment'))
@@ -81,6 +84,12 @@ class AppointmentServiceTest(BaseTest):
         G(Appointment)
         G(Appointment)
         self.assertEqual(AppointmentService().get_slot_booking_count('2012-12-12', '08:00'), 3)
+
+    def test_has_confirmed_booking(self):
+        pass
+
+    def test_get_booking_by_email(self):
+        pass
 
 
 class EmailServiceTest(TestCase):
