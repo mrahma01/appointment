@@ -61,4 +61,9 @@ class AppointmentService(object):
         return Appointment.objects.filter(email=email, appointment_key=key, appointment_status='confirmed')
 
     def get_booking_by_email(self, email):
-        return Appointment.objects.filter(email=email)
+        return Appointment.objects.filter(email=email, appointment_status='confirmed')
+
+    def get_booking_by_key(self, key):
+        obj = Appointment.objects.filter(appointment_key=key, appointment_status='confirmed')
+        if obj:
+            return obj[0]

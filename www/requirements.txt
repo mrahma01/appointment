@@ -7,3 +7,6 @@ python-memcached==1.47
 Fabric>=1.4.0
 django_compressor>=1.1.2
 django-dynamic-fixture==1.6.5
+ipdb==0.7
+ipython==0.13.1
+readline==6.2.4.1

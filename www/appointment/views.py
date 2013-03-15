@@ -12,6 +12,17 @@ class AppointmentCreateView(CreateView):
     form_class = AppointmentForm
     model = Appointment
 
+    def get_initial(self):
+        initial = super(AppointmentCreateView, self).get_initial()
+        key = self.request.GET.get('key', '')
+        obj = AppointmentService().get_booking_by_key(key)
+        if obj:
+            initial = initial.copy()
+            initial['email'] = obj.email
+            initial['time_slot'] = obj.time_slot
+            initial['date_selected'] = obj.date_selected
+        return initial
+
 
 class AppointmentConfirmView(TemplateView):
     template_name = 'appointment/confirmation.html'
