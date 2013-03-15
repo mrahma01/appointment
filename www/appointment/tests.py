@@ -24,6 +24,18 @@ class ViewAppointmentTest(BaseTest):
         response = self.c.get(reverse('appointment-list'))
         self.assertEquals(response.status_code, 200)
 
+        G(Appointment, email='m@m.com', appointment_key='12hj12hj12j', appointment_status='confirmed')
+        response = self.c.get("%s?email=m@m.com&key=12hj12hj12j" % reverse('appointment-list'))
+        self.assertTrue('m@m.com' in response.content)
+
+        G(Appointment, email='m@m.com', appointment_key='12hj12hj12j', appointment_status='confirmed')
+        response = self.c.get("%s?email=m@m.com" % reverse('appointment-list'))
+        self.assertTrue('m@m.com' not in response.content)
+
+        G(Appointment, email='m@m.com', appointment_key='123iop123io')
+        response = self.c.get("%s?email=m@m.com&key=123iop123io" % reverse('appointment-list'))
+        self.assertTrue('m@m.com' not in response.content)
+
 
 class AddAppointmentTest(BaseTest):
 
@@ -86,7 +98,11 @@ class AppointmentServiceTest(BaseTest):
         self.assertEqual(AppointmentService().get_slot_booking_count('2012-12-12', '08:00'), 3)
 
     def test_has_confirmed_booking(self):
-        pass
+        G(Appointment, email='m@m.com', appointment_key='12hj12hj12j', appointment_status='confirmed')
+        self.assertTrue(AppointmentService().has_confirmed_booking('m@m.com', '12hj12hj12j'))
+
+        G(Appointment, email='m@m.com', appointment_key='12hj12hj12a')
+        self.assertFalse(AppointmentService().has_confirmed_booking('m@m.com', '12hj12hj12a'))
 
     def test_get_booking_by_email(self):
         pass
