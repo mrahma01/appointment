@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
@@ -39,7 +41,19 @@ class EmailService(object):
 
 class AppointmentService(object):
 
-    def update_appointment(self, obj):
+    def update_appointment(self, obj, request):
+        time_slot = request.POST.get('time_slot', '')
+        date_selected = request.POST.get('date_selected', '')
+        try:
+            valid_datetime = datetime.strptime(date_selected, '%d/%m/%Y')
+        except ValueError, e:
+            print e
+        obj.time_slot = time_slot
+        obj.date_selected = valid_datetime
+        obj.save()
+        return obj
+
+    def confirm_appointment(self, obj):
         obj.appointment_status = 'confirmed'
         obj.save()
         return obj
