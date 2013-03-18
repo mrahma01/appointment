@@ -87,7 +87,7 @@ class AppointmentServiceTest(BaseTest):
         app = G(Appointment)
         self.assertEqual('submitted', app.appointment_status)
 
-        AppointmentService().update_appointment(app)
+        AppointmentService().confirm_appointment(app)
         self.assertEqual('confirmed', app.appointment_status)
 
     def test_get_slot_booking_count(self):

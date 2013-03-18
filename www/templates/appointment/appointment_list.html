@@ -1,5 +1,8 @@
 {% for obj in object_list %}
-    <li>{{ obj }} <span><a href="{% url add-appointment %}?key={{obj.appointment_key}}">Update</a> | <a href="{% url add-appointment %}?key={{obj.appointment_key}}">Delete </a></li>
+    <li>{{ obj }} <span>
+        <a href="{% url "add-appointment" %}?key={{obj.appointment_key}}">Update</a> | 
+        <a href="{% url "add-appointment" %}?key={{obj.appointment_key}}">Delete </a>
+    </li>
 {% empty%}
     <h2> No appointment found </h2>
 {% endfor %}
