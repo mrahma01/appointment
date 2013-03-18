@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 from django.core.urlresolvers import reverse
@@ -72,3 +72,11 @@ class AppointmentConfirmView(TemplateView):
             print e
 
         return context
+
+
+class AppointmentUpdateView(UpdateView):
+    pass
+
+
+class AppointmentDeleteView(DeleteView):
+    pass
