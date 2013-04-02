@@ -1,0 +1,7 @@
+{{object}}
+<form method="post">
+    {% csrf_token %} 
+<input type="submit" 
+       value="Remove and return to {{ object.person }}" 
+       name="DeleteAndShowPerson" /> 
+</form>
