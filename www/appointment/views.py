@@ -62,7 +62,7 @@ class AppointmentConfirmView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AppointmentConfirmView, self).get_context_data(**kwargs)
-        key = self.request.GET.get('key', '')
+        key = context['key']
         try:
             obj = Appointment.objects.filter(appointment_key=key)
             if obj:
