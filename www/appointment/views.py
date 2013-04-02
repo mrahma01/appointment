@@ -75,8 +75,22 @@ class AppointmentConfirmView(TemplateView):
 
 
 class AppointmentUpdateView(UpdateView):
-    pass
+    model = Appointment
+    form_class = AppointmentForm
+    success_url = '/appointment/'
+    slug_field = 'appointment_key'
+
+    def get_queryset(self, *args, **kwargs):
+        object = AppointmentService().get_confirmed_booking()
+        return object
 
 
 class AppointmentDeleteView(DeleteView):
-    pass
+    model = Appointment
+    form_class = AppointmentForm
+    success_url = '/appointment/'
+    slug_field = 'appointment_key'
+
+    def get_queryset(self, *args, **kwargs):
+        object = AppointmentService().get_confirmed_booking()
+        return object

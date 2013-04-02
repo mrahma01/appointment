@@ -1,3 +1,0 @@
-**Django Appointment**
-
-    *Under Construction*
