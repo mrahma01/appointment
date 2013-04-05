@@ -1,3 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="get">
+    <input type="text" size="30" name="email" value="email" />
+    <input type="text" size="11" maxlength="11" name="key" value="key" />
+    <input type="submit" value="submit" />
+</form>
+
 {% for obj in object_list %}
     <li>{{ obj }} <span>
         <a href="{% url "update-appointment" obj.appointment_key %}">Update</a> | 
@@ -6,3 +14,4 @@
 {% empty%}
     <h2> No appointment found </h2>
 {% endfor %}
+{% endblock %}

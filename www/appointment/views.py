@@ -94,3 +94,9 @@ class AppointmentDeleteView(DeleteView):
     def get_queryset(self, *args, **kwargs):
         object = AppointmentService().get_confirmed_booking()
         return object
+
+    def delete(self, request, *args, **kwargs):
+        self.obj = self.get_object()
+        self.obj.appointment_status = 'deleted'
+        self.obj.save()
+        return HttpResponseRedirect(self.get_success_url())
