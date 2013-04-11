@@ -14,4 +14,26 @@
 {% empty%}
     <h2> No appointment found </h2>
 {% endfor %}
+
+<script type="text/javascript">
+$.fn.toogleInput = function(){
+    $(this).each(function(){
+        var input = $(this)
+        var default_val = input.val();
+        input.focus(function(){
+            if($(input).val() == default_val){
+                $(this).val("");
+            }
+        }).blur(function(){
+            if($(this).val()==''){
+                $(this).val(default_val);
+            }
+        })        
+    })
+}
+
+$(document).ready(function(){
+    $("input[type=text]").toogleInput();
+})
+</script>
 {% endblock %}
