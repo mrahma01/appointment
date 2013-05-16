@@ -81,3 +81,6 @@ class AppointmentService(object):
         obj = Appointment.objects.filter(appointment_key=key, appointment_status='confirmed')
         if obj:
             return obj[0]
+
+    def get_confirmed_booking(self):
+        return Appointment.objects.filter(appointment_status='confirmed')

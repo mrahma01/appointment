@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 from django.core.urlresolvers import reverse
@@ -62,7 +62,7 @@ class AppointmentConfirmView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AppointmentConfirmView, self).get_context_data(**kwargs)
-        key = context['params']['key']
+        key = context['key']
         try:
             obj = Appointment.objects.filter(appointment_key=key)
             if obj:
@@ -72,3 +72,31 @@ class AppointmentConfirmView(TemplateView):
             print e
 
         return context
+
+
+class AppointmentUpdateView(UpdateView):
+    model = Appointment
+    form_class = AppointmentForm
+    success_url = '/appointment/'
+    slug_field = 'appointment_key'
+
+    def get_queryset(self, *args, **kwargs):
+        object = AppointmentService().get_confirmed_booking()
+        return object
+
+
+class AppointmentDeleteView(DeleteView):
+    model = Appointment
+    form_class = AppointmentForm
+    success_url = '/appointment/'
+    slug_field = 'appointment_key'
+
+    def get_queryset(self, *args, **kwargs):
+        object = AppointmentService().get_confirmed_booking()
+        return object
+
+    def delete(self, request, *args, **kwargs):
+        self.obj = self.get_object()
+        self.obj.appointment_status = 'deleted'
+        self.obj.save()
+        return HttpResponseRedirect(self.get_success_url())
