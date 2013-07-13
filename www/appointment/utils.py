@@ -31,3 +31,9 @@ def is_email(email):
         return True
     else:
         return False
+
+
+def get_monthly_calendar():
+    """Return a month in list of dates"""
+    dates = []
+    return dates

@@ -68,6 +68,10 @@ class AddAppointmentTest(BaseTest):
         form = AppointmentForm(postdata)
         self.assertFalse(form.is_valid())
 
+    def test_appointment_has_calendar(self):
+        """ Add appointment view must show a 30 days calendar starting from today """
+        self.assertEqual(1,2)
+
 
 class ConfirmAppointmentTest(BaseTest):
 
@@ -105,7 +109,17 @@ class AppointmentServiceTest(BaseTest):
         self.assertFalse(AppointmentService().has_confirmed_booking('m@m.com', '12hj12hj12a'))
 
     def test_get_booking_by_email(self):
-        pass
+        self.assertEqual(1,2)
+
+    def test_get_booking_by_key(self):
+        self.assertEqual(1,2)
+
+    def test_get_confirmed_bookins(self):
+        self.assertEqual(1,2)        
+
+    def test_get_month_appointments(self):
+        """ Will show a list of dates, time_slots, and status in a dictionary for a month starting from today """
+        self.assertEqual(1,2)
 
 
 class EmailServiceTest(TestCase):

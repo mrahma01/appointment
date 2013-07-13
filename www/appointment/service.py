@@ -84,3 +84,6 @@ class AppointmentService(object):
 
     def get_confirmed_booking(self):
         return Appointment.objects.filter(appointment_status='confirmed')
+
+    def get_month_appointments(self):
+        pass

@@ -43,6 +43,7 @@ class AppointmentCreateView(CreateView):
         obj = AppointmentService().get_booking_by_key(key)
         if obj:
             context['delete_key'] = True
+        context['calendar'] = 'calendar here'
         return context
 
     def post(self, *args, **kwargs):
