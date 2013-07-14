@@ -32,9 +32,9 @@ class AppointmentCreateView(CreateView):
         obj = AppointmentService().get_booking_by_key(key)
         if obj:
             initial = initial.copy()
-            initial['email'] = obj.email
-            initial['time_slot'] = obj.time_slot
-            initial['date_selected'] = obj.date_selected
+            initial['email'] = obj[0].email
+            initial['time_slot'] = obj[0].time_slot
+            initial['date_selected'] = obj[0].date_selected
         return initial
 
     def get_context_data(self, **kwargs):
@@ -82,7 +82,7 @@ class AppointmentUpdateView(UpdateView):
     slug_field = 'appointment_key'
 
     def get_queryset(self, *args, **kwargs):
-        object = AppointmentService().get_confirmed_booking()
+        object = AppointmentService().get_confirmed_bookings()
         return object
 
 
@@ -93,7 +93,7 @@ class AppointmentDeleteView(DeleteView):
     slug_field = 'appointment_key'
 
     def get_queryset(self, *args, **kwargs):
-        object = AppointmentService().get_confirmed_booking()
+        object = AppointmentService().get_confirmed_bookings()
         return object
 
     def delete(self, request, *args, **kwargs):

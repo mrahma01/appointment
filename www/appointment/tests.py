@@ -70,7 +70,7 @@ class AddAppointmentTest(BaseTest):
 
     def test_appointment_has_calendar(self):
         """ Add appointment view must show a 30 days calendar starting from today """
-        self.assertEqual(1,2)
+        pass
 
 
 class ConfirmAppointmentTest(BaseTest):
@@ -104,22 +104,27 @@ class AppointmentServiceTest(BaseTest):
     def test_has_confirmed_booking(self):
         G(Appointment, email='m@m.com', appointment_key='12hj12hj12j', appointment_status='confirmed')
         self.assertTrue(AppointmentService().has_confirmed_booking('m@m.com', '12hj12hj12j'))
-
         G(Appointment, email='m@m.com', appointment_key='12hj12hj12a')
         self.assertFalse(AppointmentService().has_confirmed_booking('m@m.com', '12hj12hj12a'))
 
     def test_get_booking_by_email(self):
-        self.assertEqual(1,2)
+        G(Appointment, email='m@m.com', appointment_status='confirmed')
+        self.assertTrue(AppointmentService().get_booking_by_email('m@m.com'))
+        G(Appointment, email='a@a.com', appointment_status='submitted')
+        self.assertFalse(AppointmentService().get_booking_by_email('a@a.com'))
 
     def test_get_booking_by_key(self):
-        self.assertEqual(1,2)
+        G(Appointment, appointment_key='12hj12hj12a', appointment_status='confirmed')
+        self.assertTrue(AppointmentService().get_booking_by_key('12hj12hj12a'))
+        G(Appointment, appointment_key='bCfm393Rxxx')
+        self.assertFalse(AppointmentService().get_booking_by_key('bCfm393Rxxx'))
 
-    def test_get_confirmed_bookins(self):
-        self.assertEqual(1,2)        
+    def test_get_confirmed_bookings(self):
+        self.assertEqual(2, AppointmentService().get_confirmed_bookings().count())
 
     def test_get_month_appointments(self):
         """ Will show a list of dates, time_slots, and status in a dictionary for a month starting from today """
-        self.assertEqual(1,2)
+        pass
 
 
 class EmailServiceTest(TestCase):
