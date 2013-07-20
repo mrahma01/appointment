@@ -19,6 +19,8 @@ class AppointmentForm(forms.ModelForm):
         if 'date_selected' not in cleaned_data:
             raise forms.ValidationError("Valid date is dd/mm/yyyy")
         print cleaned_data
+        if 'time_slot' not in cleaned_data:
+            raise forms.ValidationError("Please select your appointment slot")
         date = cleaned_data['date_selected']
         slot = cleaned_data['time_slot']
         if not AppointmentService().is_booking_allowed(date, slot):

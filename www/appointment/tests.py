@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.utils import unittest
 from django.test import TestCase
 from django.test.client import Client
@@ -10,6 +11,7 @@ from django_dynamic_fixture import G
 from appointment.models import Appointment
 from appointment.service import AppointmentService, EmailService
 from appointment.forms import AppointmentForm
+from appointment.utils import *
 
 
 class BaseTest(unittest.TestCase):
@@ -138,3 +140,33 @@ class EmailServiceTest(TestCase):
         app = G(Appointment)
         EmailService().send_ticket(app)
         self.assertEqual(mail.outbox[1].subject, 'Appointment Pass')
+
+
+class UtilTest(TestCase):
+
+    def test_get_random(self):
+        """Test randmon has correct number of characters"""
+        self.assertEqual(9, get_random(9).__len__())
+        self.assertNotEqual(10, get_random(9).__len__())
+
+    def test_get_time_slot(self):
+        """Test if the correct number of slot returned"""
+        settings.FIRST_APPOINTMENT = 9
+        settings.LAST_APPOINTMENT = 17
+        settings.APPOINTMENT_INTERVAL = 60
+        self.assertEqual(9, get_time_slot().__len__())
+        self.assertNotEqual(8, get_time_slot().__len__())
+
+    def test_is_email(self):
+        """Check if string is email (almost valid[check RFC 2822])"""
+        self.assertTrue(is_email('mmrs151@gmail.com'))
+        self.assertTrue(is_email('mmrs151@yahoo.co.uk'))
+        self.assertFalse(is_email('mmrs151@gmailcom'))
+        self.assertFalse(is_email('mmrs151gmail.com'))
+        self.assertFalse(is_email(''))
+        self.assertFalse(is_email(' @ . '))
+
+    def test_get_monthly_calendar(self):
+        """Check if returns a 30 days calendar"""
+        self.assertEqual(30, get_monthly_calendar().__len__())
+        self.assertNotEqual(31, get_monthly_calendar().__len__())

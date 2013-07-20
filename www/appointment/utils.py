@@ -1,7 +1,8 @@
 import re
 import random
 import string
-from datetime import datetime, timedelta
+import datetime
+from datetime import timedelta
 
 from django.conf import settings
 
@@ -14,8 +15,8 @@ def get_random(limit):
 
 
 def get_time_slot():
-    FULL_DAY = settings.APPOINTMENT_END - settings.APPOINTMENT_START
-    now = datetime(2013, 1, 1, settings.APPOINTMENT_START)
+    FULL_DAY = settings.LAST_APPOINTMENT - settings.FIRST_APPOINTMENT
+    now = datetime.datetime(2013, 1, 1, settings.FIRST_APPOINTMENT)
     end = now + timedelta(hours=FULL_DAY)
     slot = now
     time_slot = [now.strftime("%H:%M")]
@@ -35,5 +36,5 @@ def is_email(email):
 
 def get_monthly_calendar():
     """Return a month in list of dates"""
-    dates = []
-    return dates
+    today = datetime.datetime.today()
+    return [today + timedelta(days=i) for i in range(1, 31)]

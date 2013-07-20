@@ -2,11 +2,17 @@
 {% block header %}
  <script>
   $(function() {
-    $( "#id_date_selected" ).datepicker({ dateFormat: "dd/mm/yy" });
-    $( "#id_date_selected" ).datepicker({ gotoCurrent: true });
-    $( "#id_date_selected" ).datepicker();
+    $("#id_date_selected" ).datepicker({
+      dateFormat: "dd/mm/yy",
+      defaultDate: "+1w",
+      gotoCurrent: true,
+      changeMonth: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      minDate: 0,
+    });
   });
-  </script>
+  </script>  
 {% endblock %}
 {% block content %}
   <form method="post"> 
